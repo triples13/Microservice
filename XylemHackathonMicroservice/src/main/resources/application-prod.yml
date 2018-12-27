@@ -1,0 +1,58 @@
+demo:
+  security:
+    jwt:
+      tokenExpirationTime: 540 # minutes
+      refreshTokenExpTime: 1080 # minutes
+      tokenIssuer: EOUAAServer
+      tokenSigningKey: xm8EV6Hy5RMFK4EEACIDAwQus
+
+server:
+  port: 9800
+
+security:
+  oauth2:
+    resource:
+      filter-order: 3
+
+spring:
+  application:
+    name: xylemhackathonmicroservice
+  datasource:
+    url: jdbc:postgresql://mlsolutionsuitepostgres.cohofwga1qua.us-east-1.rds.amazonaws.com:5432/MLSolutionSuiteDB?currentSchema=public&user=postgres&password=solution
+    username: postgres
+    password: solution
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+    hibernate:
+        ddl-auto: update
+    properties:
+      temp:
+          use_jdbc_metadata_defaults: false
+eureka:
+  instance:
+    prefer-ip-address: true
+    metadata-map:
+      user.name: springbootadmin
+      user.password: admin@springboot
+  client:
+    healthcheck:
+      enabled: true  
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+     defaultZone: http://eureka-server:8761/eureka/
+    
+management:
+  security:
+   enabled: false
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+          
+    jmx:
+      exposure:
+        include: "*"
+

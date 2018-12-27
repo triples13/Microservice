@@ -1,0 +1,86 @@
+demo:
+  security:
+    jwt:
+      tokenExpirationTime: 540 # minutes
+      refreshTokenExpTime: 1080 # minutes
+      tokenIssuer: EOUAAServer
+      tokenSigningKey: xm8EV6Hy5RMFK4EEACIDAwQus
+
+
+security:
+  oauth2:
+    resource:
+      filter-order: 3
+
+spring:
+  application:
+    name: ApiGateway
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=public&user=postgres&password=solution
+    username: solution
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+    hibernate:
+        ddl-auto: update
+    properties:
+      temp:
+          use_jdbc_metadata_defaults: false
+eureka:
+  instance:
+    prefer-ip-address: true
+    metadata-map:
+      user.name: springbootadmin
+      user.password: admin@springboot
+  client:
+    healthcheck:
+      enabled: true  
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+     #defaultZone: http://eureka-server:8761/eureka
+     defaultZone: http://localhost:8761/eureka
+
+management:
+  security:
+   enabled: false
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+          
+    jmx:
+      exposure:
+        include: "*"
+          
+  
+  endpoint:
+      health:
+        show-details: "ALWAYS"
+    
+zuul:
+    host:
+      socket-timeout-millis: 30000
+    routes:
+      xylemhackathonmicroservice:
+       path: /xylemhackathonmicroservice/**
+       sensitiveHeaders: Authorization,Cookie,Set-Cookie
+       serviceId: xylemhackathonmicroservice
+     
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 120000
+ribbon:
+  ConnectTimeout: 80000
+  ReadTimeout: 80000       
+
+       
+
+       
+ 

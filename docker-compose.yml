@@ -1,0 +1,60 @@
+version: '3.0'
+services:
+  eureka-server:
+    image: 658670438472.dkr.ecr.us-east-1.amazonaws.com/eureka-server
+    ports:
+     - "8761:8761"
+    environment:
+       JAVA_OPTS: '-Xmx200m'
+  api-gateway:
+    image: 658670438472.dkr.ecr.us-east-1.amazonaws.com/api-gateway
+    depends_on:
+     - eureka-server
+     - spring-boot-admin
+    ports:
+     - "8080:8080"
+    environment:
+       JAVA_OPTS: '-Xmx350m'
+  ruleandalarmapi:
+    image: 658670438472.dkr.ecr.us-east-1.amazonaws.com/ruleandalarmapi
+    depends_on:
+     - eureka-server
+     - spring-boot-admin
+    ports:
+     - "9800:9800"
+    environment:
+       JAVA_OPTS: '-Xmx350m'
+  alarmocurance:
+    image: 658670438472.dkr.ecr.us-east-1.amazonaws.com/alarmocurance
+    depends_on:
+     - eureka-server
+     - spring-boot-admin
+    ports:
+     - "9700:9700"
+    environment:
+        JAVA_OPTS: '-Xmx350m'
+  equipdata:
+    image: 658670438472.dkr.ecr.us-east-1.amazonaws.com/equipdata
+    depends_on:
+     - eureka-server
+     - spring-boot-admin
+    ports:
+     - "8100:8100"
+    environment:
+        JAVA_OPTS: '-Xmx350m'
+  spring-boot-admin:
+    image: 658670438472.dkr.ecr.us-east-1.amazonaws.com/spring-boot-admin
+    depends_on:
+     - eureka-server
+    ports:
+     - "8090:8090"
+    environment:
+        JAVA_OPTS: '-Xmx300m'
+  rulecreationapi:
+    image: 658670438472.dkr.ecr.us-east-1.amazonaws.com/rulecreationapi
+    depends_on:
+     - eureka-server
+    ports:
+     - "2000:2000"
+    environment:
+        JAVA_OPTS: '-Xmx350m'

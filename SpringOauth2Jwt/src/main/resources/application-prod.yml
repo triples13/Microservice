@@ -64,10 +64,10 @@ zuul:
     host:
       socket-timeout-millis: 30000
     routes:
-      xylemhackathonmicroservice:
-       path: /xylemhackathonmicroservice/**
+      xmicroservice:
+       path: /xmicroservice/**
        sensitiveHeaders: Authorization,Cookie,Set-Cookie
-       serviceId: xylemhackathonmicroservice
+       serviceId: xmicroservice
 hystrix:
   command:
     default:

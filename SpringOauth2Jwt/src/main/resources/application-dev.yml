@@ -14,7 +14,7 @@ security:
 
 spring:
   application:
-    name: ApiGateway
+    name: SpringOauth2Server
   datasource:
     url: jdbc:postgresql://localhost:5432/postgres?currentSchema=public&user=postgres&password=solution
     username: solution
@@ -64,10 +64,10 @@ zuul:
     host:
       socket-timeout-millis: 30000
     routes:
-      xylemhackathonmicroservice:
-       path: /xylemhackathonmicroservice/**
+      xmicroservice:
+       path: /xmicroservice/**
        sensitiveHeaders: Authorization,Cookie,Set-Cookie
-       serviceId: xylemhackathonmicroservice
+       serviceId: xmicroservice
      
 hystrix:
   command:

@@ -15,11 +15,11 @@ security:
 
 spring:
   application:
-    name: ruleandalarmapi
+    name: xmicroservice
   datasource:
-    url: jdbc:postgresql://mlsolutionsuitepostgresdev.cohofwga1qua.us-east-1.rds.amazonaws.com:5432/mlsolutionsuitedev?currentSchema=public&user=mluser&password=microlanduserdb
-    username: mluser
-    password: microlanduserdb
+    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=public&user=postgres&password=solution
+    username: postgres
+    password: solution
     driver-class-name: org.postgresql.Driver
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
@@ -46,7 +46,7 @@ eureka:
     registerWithEureka: true
     fetchRegistry: true
     serviceUrl:
-     defaultZone: http://eureka-server:8761/eureka/
+     defaultZone: http://localhost:8761/eureka/
     
 
 management:
